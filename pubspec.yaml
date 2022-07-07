@@ -38,9 +38,8 @@ dependencies:
     sdk: flutter
   smooth_page_indicator: ^1.0.0+2
 flutter_native_splash:
-  color: "#FFFFFF"
+  color: "#ffffff"
   image: assets/images/splash_logo.png
-  color_dark: "#0D0D0D"
   android: true
   ios: true
 

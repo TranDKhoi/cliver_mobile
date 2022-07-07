@@ -8,5 +8,6 @@ const Map<String, String> enLanguagePackage = {
   "Forget Password?": "Forget Password?",
   "Don’t Have An Account?": "Don’t Have An Account?",
   "Register": "Register",
+  "Change language": "Change language",
   'login': 'Log In',
 };
