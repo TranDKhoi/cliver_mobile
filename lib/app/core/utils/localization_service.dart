@@ -16,6 +16,11 @@ class LocalizationService extends Translations {
     'vi',
   ];
 
+  static final List displayLangList = [
+    {'name': 'English(US)', 'languageCode': 'en'},
+    {'name': 'Tiếng Việt', 'languageCode': 'vi'},
+  ];
+
 // các Locale được support
   static final locales = [
     const Locale('en', 'US'),
