@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const secondaryColor = Color.fromRGBO(54, 144, 6, 1.0);
-  static var backgroundColor = Colors.white;
+  static const primaryColor = Color.fromRGBO(27, 186, 133, 1.0);
+  static const secondaryColor = Color.fromRGBO(179, 178, 178, 1.0);
+  static const backgroundColor = Color(0xffF3F5F6);
   static const Color greyBackgroundColor = Color(0xffebecee);
-  static var selectedNavBarColor = Colors.cyan[800]!;
-  static const unselectedNavBarColor = Colors.black87;
+  static const selectedNavBarColor = Color.fromRGBO(28, 185, 134, 1);
+  static const unselectedNavBarColor = Colors.transparent;
 }
