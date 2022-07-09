@@ -8,5 +8,6 @@ const Map<String, String> viLanguagePackage = {
   "Forget Password?": "Quên mật khẩu?",
   "Don’t Have An Account?": "Chưa có tài khoản?",
   "Register": "Đăng ký",
+  "Change language": "Đổi ngôn ngữ",
   'login': 'Đăng nhập',
 };

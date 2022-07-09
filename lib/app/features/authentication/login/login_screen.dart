@@ -126,12 +126,12 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  bool isdark = false;
   loginFunc() {
     if (_email.text.isEmpty || _pass.text.isEmpty) {
       showSnackBar(context, "Please enter your email and password");
     }
     //call api
-
     //
 
     // navigate to home screen

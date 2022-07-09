@@ -97,6 +97,7 @@ class _OnBoardingState extends State<OnBoarding> {
           ),
         ),
         bottomSheet: Container(
+          decoration: BoxDecoration(color: AppColors.backgroundColor),
           padding: const EdgeInsets.symmetric(horizontal: 40),
           height: 140,
           child: Center(
