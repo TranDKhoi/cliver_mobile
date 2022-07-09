@@ -20,10 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Text("welcometocliver".tr),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 languageDialog(context);
               },
-              child: Text("Language"),
+              child: const Text("Language"),
             ),
           ],
         ),
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (builder) {
           return AlertDialog(
             title: Text("Change language".tr),
-            content: Container(
+            content: SizedBox(
               width: double.maxFinite,
               child: ListView.separated(
                   shrinkWrap: true,

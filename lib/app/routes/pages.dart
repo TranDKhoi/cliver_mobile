@@ -15,11 +15,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           builder: (_) => const SignUpScreen(), settings: routeSettings);
     default:
       return MaterialPageRoute(
-          builder: (_) => const Scaffold(
-                body: Center(
-                  child: Text("Screen error!"),
-                ),
-              ),
-          settings: routeSettings);
+        builder: (_) => const Scaffold(
+          body: Center(
+            child: Text("Screen error!"),
+          ),
+        ),
+        settings: routeSettings,
+      );
   }
 }
