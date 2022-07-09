@@ -8,12 +8,14 @@ import '../features/authentication/signup_screen.dart';
 class AppPages {
   static final pages = [
     GetPage(
-        name: loginScreenRoute,
-        page: () => const LoginScreen(),
-        transition: Transition.fadeIn),
+      name: loginScreenRoute,
+      page: () => const LoginScreen(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: signUpScreenRoute,
-        page: () => const SignUpScreen(),
-        transition: Transition.fadeIn),
+      name: signUpScreenRoute,
+      page: () => const SignUpScreen(),
+      transition: Transition.fadeIn,
+    ),
   ];
 }
