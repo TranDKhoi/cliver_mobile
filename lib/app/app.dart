@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'controller/user_controller.dart';
+import 'features/bottom_navigation_bar/buyer_bottom_bar.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -22,9 +23,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       theme: AppColors().lightTheme,
       home: SafeArea(
-        child: UserController.instance.isFirstTime
-            ? const OnBoarding()
-            : const LoginScreen(),
+        child: BuyerBottomBar(),
       ),
     );
   }

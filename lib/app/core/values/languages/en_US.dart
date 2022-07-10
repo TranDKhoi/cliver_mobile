@@ -10,4 +10,5 @@ const Map<String, String> enLanguagePackage = {
   "Register": "Register",
   "Change language": "Change language",
   'login': 'Log In',
+  'home': 'Home',
 };

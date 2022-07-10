@@ -10,4 +10,5 @@ const Map<String, String> viLanguagePackage = {
   "Register": "Đăng ký",
   "Change language": "Đổi ngôn ngữ",
   'login': 'Đăng nhập',
+  'home':'Trang chủ',
 };
