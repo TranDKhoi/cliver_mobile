@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BottomNavigationBarCustom extends StatelessWidget {
-  BottomNavigationBarCustom({
+  const BottomNavigationBarCustom({
     Key? key,
     this.selectedIndex = 0,
     this.showElevation = true,
