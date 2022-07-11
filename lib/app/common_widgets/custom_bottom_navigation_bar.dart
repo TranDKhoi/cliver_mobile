@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BottomNavigationBarCustom extends StatelessWidget {
-
   BottomNavigationBarCustom({
     Key? key,
     this.selectedIndex = 0,
@@ -12,11 +11,10 @@ class BottomNavigationBarCustom extends StatelessWidget {
     this.itemCornerRadius = 15,
     this.containerHeight = 56,
     this.animationDuration = const Duration(milliseconds: 270),
-    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     required this.items,
     required this.onItemSelected,
     this.curve = Curves.linear,
-  }) : assert(items.length >= 2 && items.length <= 5),
+  })  : assert(items.length >= 2 && items.length <= 5),
         super(key: key);
 
   final int selectedIndex;
@@ -26,7 +24,6 @@ class BottomNavigationBarCustom extends StatelessWidget {
   final Duration animationDuration;
   final List<BottomNavigationBarCustomItem> items;
   final ValueChanged<int> onItemSelected;
-  final MainAxisAlignment mainAxisAlignment;
   final double itemCornerRadius;
   final double containerHeight;
   final Curve curve;
@@ -51,8 +48,10 @@ class BottomNavigationBarCustom extends StatelessWidget {
           width: double.infinity,
           height: containerHeight,
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           child: Row(
-            mainAxisAlignment: mainAxisAlignment,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: items.map((item) {
               var index = items.indexOf(item);
               return GestureDetector(
@@ -75,7 +74,7 @@ class BottomNavigationBarCustom extends StatelessWidget {
   }
 }
 
-class _ItemWidget extends StatelessWidget {
+class _ItemWidget extends StatefulWidget {
   final double iconSize;
   final bool isSelected;
   final BottomNavigationBarCustomItem item;
@@ -93,55 +92,61 @@ class _ItemWidget extends StatelessWidget {
     required this.itemCornerRadius,
     required this.iconSize,
     this.curve = Curves.linear,
-  })  : super(key: key);
+  }) : super(key: key);
 
+  @override
+  State<_ItemWidget> createState() => _ItemWidgetState();
+}
+
+class _ItemWidgetState extends State<_ItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
       container: true,
-      selected: isSelected,
+      selected: widget.isSelected,
       child: AnimatedContainer(
-        width: isSelected ? 130 : 50,
+        width: widget.isSelected ? 130 : 50,
         height: double.maxFinite,
-        duration: animationDuration,
-        curve: curve,
+        duration: widget.animationDuration,
+        curve: widget.curve,
         decoration: BoxDecoration(
-          color:
-          isSelected ? item.activeColor.withOpacity(1) : backgroundColor,
-          borderRadius: BorderRadius.circular(itemCornerRadius),
+          color: widget.isSelected
+              ? widget.item.activeColor.withOpacity(1)
+              : widget.backgroundColor,
+          borderRadius: BorderRadius.circular(widget.itemCornerRadius),
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           physics: const NeverScrollableScrollPhysics(),
           child: Container(
-            width: isSelected ? 130 : 50,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            width: widget.isSelected ? 130 : 50,
             child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
+              children: [
+                const SizedBox(
+                  width: 5,
+                ),
                 IconTheme(
                   data: IconThemeData(
-                    size: iconSize,
-                    color: isSelected
-                        ? item.childColor?.withOpacity(1)
-                        : item.inactiveColor ?? item.childColor,
+                    size: widget.iconSize,
+                    color: widget.isSelected
+                        ? widget.item.childColor?.withOpacity(1)
+                        : widget.item.inactiveColor ?? widget.item.childColor,
                   ),
-                  child: item.icon,
+                  child: widget.item.icon,
                 ),
-                if (isSelected)
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: DefaultTextStyle.merge(
-                        style: TextStyle(
-                          color: item.childColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        textAlign: item.textAlign,
-                        child: item.title,
+                if (widget.isSelected)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 8),
+                    child: Text(
+                      widget.item.title,
+                      style: TextStyle(
+                        fontSize: 15.5,
+                        color: widget.item.childColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -153,8 +158,8 @@ class _ItemWidget extends StatelessWidget {
     );
   }
 }
-class BottomNavigationBarCustomItem {
 
+class BottomNavigationBarCustomItem {
   BottomNavigationBarCustomItem({
     required this.icon,
     required this.title,
@@ -164,7 +169,7 @@ class BottomNavigationBarCustomItem {
     this.childColor,
   });
   final Widget icon;
-  final Widget title;
+  final String title;
   final Color activeColor;
   final Color? inactiveColor;
   final TextAlign? textAlign;
