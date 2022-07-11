@@ -3,6 +3,7 @@ import 'package:cliver_mobile/app/core/values/app_colors.dart';
 import 'package:cliver_mobile/app/features/authentication/login/login_screen.dart';
 import 'package:cliver_mobile/app/features/onboarding/onboarding.dart';
 import 'package:cliver_mobile/app/routes/pages.dart';
+import 'package:cliver_mobile/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: chatScreenRoute,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       locale: LocalizationService.locale,

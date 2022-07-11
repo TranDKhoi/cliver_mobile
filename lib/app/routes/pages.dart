@@ -1,3 +1,4 @@
+import 'package:cliver_mobile/app/features/chat/screens/chat_screen.dart';
 import 'package:cliver_mobile/app/routes/routes.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,11 @@ class AppPages {
     GetPage(
       name: signUpScreenRoute,
       page: () => const SignUpScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: chatScreenRoute,
+      page: () => const ChatScreen(),
       transition: Transition.fadeIn,
     ),
   ];

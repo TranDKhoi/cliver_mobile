@@ -33,10 +33,12 @@ dependencies:
   get: ^4.6.5
   file_picker: ^3.0.4
   flutter_native_splash: ^2.2.4
+  device_preview: ^1.1.0
 
   flutter:
     sdk: flutter
   smooth_page_indicator: ^1.0.0+2
+  intl: ^0.17.0
 flutter_native_splash:
   color: "#ffffff"
   image: assets/images/splash_logo.png
