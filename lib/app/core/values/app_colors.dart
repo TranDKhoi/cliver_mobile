@@ -7,7 +7,8 @@ class AppColors extends GetxController {
   static const backgroundColor = Color(0xffF3F5F6);
   static const Color greyBackgroundColor = Color(0xffebecee);
   static const selectedNavBarColor = Color.fromRGBO(28, 185, 134, 1);
-  static const unselectedNavBarColor = Colors.transparent;
+  static const unselectedNavBarColor = Color.fromRGBO(179, 178, 178, 1.0);
+  static const itemChildColor = Colors.white;
 
   //==========================================================================//
   //LIGHT THEME

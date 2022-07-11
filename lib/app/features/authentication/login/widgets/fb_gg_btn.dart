@@ -16,16 +16,27 @@ class GGFBBtn extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 elevation: 0,
-                primary: Color(int.parse("0xFFEBC9C6")),
+                primary: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 15),
               ),
-              child: const Text(
-                "GOOGLE",
-                style: TextStyle(
-                  color: Color.fromRGBO(212, 70, 56, 1),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/icons/gg_icon.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    "GOOGLE",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -38,16 +49,27 @@ class GGFBBtn extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 elevation: 0,
-                primary: Color(int.parse("0xFFC6D2E4")),
+                primary: Color(int.parse("0xff1877f2")),
                 padding: const EdgeInsets.symmetric(vertical: 15),
               ),
-              child: const Text(
-                "FACEBOOK",
-                style: TextStyle(
-                  color: Color.fromRGBO(66, 103, 178, 1),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/icons/fb_icon.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    "FACEBOOK",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

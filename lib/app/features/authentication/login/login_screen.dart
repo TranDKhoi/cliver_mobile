@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35).copyWith(top: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 35).copyWith(top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
               const GGFBBtn(),
               const SizedBox(height: 30),
               Center(
@@ -80,7 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    toForgetPassScreen();
+                  },
                   child: Text(
                     "Forget Password?".tr,
                     style: const TextStyle(fontSize: 14),
@@ -126,14 +128,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  bool isdark = false;
   loginFunc() {
     if (_email.text.isEmpty || _pass.text.isEmpty) {
       showSnackBar(context, "Please enter your email and password");
     }
     //call api
     //
+// navigate to home screen
+    Get.offAllNamed(myBottomBarRoute);
+  }
 
-    // navigate to home screen
+  void toForgetPassScreen() {
+    Get.toNamed(forgetPassScreenRoute);
   }
 }
