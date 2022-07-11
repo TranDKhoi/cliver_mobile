@@ -126,6 +126,15 @@ class _ChatScreenState extends State<ChatScreen> {
                                     color: (messages[index].isSentByMe)
                                         ? AppColors.lightGreenColor
                                         : Colors.white,
+                                    boxShadow: (!messages[index].isSentByMe)
+                                        ? const [
+                                            BoxShadow(
+                                              blurRadius: 50,
+                                              color: AppColors.greyShadowColor,
+                                              offset: Offset(20, 20),
+                                            ),
+                                          ]
+                                        : null,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(12),

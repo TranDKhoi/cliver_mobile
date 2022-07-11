@@ -11,6 +11,8 @@ class AppColors extends GetxController {
   static const selectedNavBarColor = Color.fromRGBO(28, 185, 134, 1);
   static const unselectedNavBarColor = Colors.transparent;
 
+  static const greyShadowColor = Color.fromRGBO(118, 140, 170, 0.16);
+
   //==========================================================================//
   //LIGHT THEME
   ThemeData lightTheme = ThemeData.light().copyWith(

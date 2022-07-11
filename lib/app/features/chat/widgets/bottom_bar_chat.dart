@@ -17,7 +17,7 @@ class BottomBarChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: size.height * 0.02,
+        top: size.height * 0.01,
         bottom: size.height * 0.03,
         left: size.width * 0.05,
         right: size.width * 0.05,
