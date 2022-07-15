@@ -1,4 +1,5 @@
 import 'package:cliver_mobile/app/core/values/app_colors.dart';
+import 'package:cliver_mobile/app/features/seller/home/seller_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,14 +15,7 @@ class MyBottomBar extends StatefulWidget {
 class _MyBottomBarState extends State<MyBottomBar> {
   int index = 0;
   List<Widget> pages = const [
-    Center(
-      child: Text(
-        'Animation bottom',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-    ),
+    SellerHome(),
     Center(
       child: Text(
         'Animation bottom',
