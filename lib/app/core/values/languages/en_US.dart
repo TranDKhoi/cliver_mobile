@@ -39,4 +39,5 @@ const Map<String, String> enLanguagePackage = {
   'Chat': 'Chat',
   'Order': 'Order',
   'Profile': 'Profile',
+  'Go': 'Where Do You\nWant Go',
 };

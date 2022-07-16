@@ -7,3 +7,4 @@ const String successScreenRoute = "/success_screen";
 const String forgetPassScreenRoute = "/forget_pass_screen";
 const String verifyEmailScreenRoute = "/verify_email_screen";
 const String myBottomBarRoute = "/bottom_bar";
+const String buyerHomeScreenRoute = '/buyer_home_screen';

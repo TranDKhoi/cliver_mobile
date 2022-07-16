@@ -1,4 +1,6 @@
+import 'package:cliver_mobile/app/core/utils/size_config.dart';
 import 'package:cliver_mobile/app/core/values/app_colors.dart';
+import 'package:cliver_mobile/app/features/buyer/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,42 +16,15 @@ class MyBottomBar extends StatefulWidget {
 class _MyBottomBarState extends State<MyBottomBar> {
   int index = 0;
   List<Widget> pages = const [
-    Center(
-      child: Text(
-        'Animation bottom',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-    ),
-    Center(
-      child: Text(
-        'Animation bottom',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-    ),
-    Center(
-      child: Text(
-        'Animation bottom',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-    ),
-    Center(
-      child: Text(
-        'Animation bottom',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-    ),
+    BuyerHomeScreen(),
+    BuyerHomeScreen(),
+    BuyerHomeScreen(),
+    BuyerHomeScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    CustomSize().init(context);
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: pages[index],
@@ -59,6 +34,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
 
   Widget buildBottomNavigation() {
     return BottomNavigationBarCustom(
+      containerHeight: getHeight(60),
       backgroundColor: AppColors.backgroundColor,
       showElevation: false,
       itemCornerRadius: 15,
@@ -69,6 +45,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
           inactiveColor: AppColors.secondaryColor,
           activeColor: AppColors.selectedNavBarColor,
           childColor: AppColors.itemChildColor,
+          height: getHeight(56),
         ),
         BottomNavigationBarCustomItem(
           title: 'Chat'.tr,
@@ -76,6 +53,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
           inactiveColor: AppColors.secondaryColor,
           activeColor: AppColors.selectedNavBarColor,
           childColor: AppColors.itemChildColor,
+          height: getHeight(56),
         ),
         BottomNavigationBarCustomItem(
           title: 'Order'.tr,
@@ -83,6 +61,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
           inactiveColor: AppColors.secondaryColor,
           activeColor: AppColors.selectedNavBarColor,
           childColor: AppColors.itemChildColor,
+          height: getHeight(56),
         ),
         BottomNavigationBarCustomItem(
           title: 'Profile'.tr,
@@ -90,6 +69,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
           inactiveColor: AppColors.secondaryColor,
           activeColor: AppColors.selectedNavBarColor,
           childColor: AppColors.itemChildColor,
+          height: getHeight(56),
         ),
       ],
       onItemSelected: (index) => setState(() {

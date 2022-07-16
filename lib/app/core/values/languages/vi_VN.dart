@@ -39,4 +39,5 @@ const Map<String, String> viLanguagePackage = {
   'Chat': 'Trò chuyện',
   'Order': 'Đơn hàng',
   'Profile': 'Cá nhân',
+  'Go': 'Bạn muốn đi du lịch\nở đâu',
 };

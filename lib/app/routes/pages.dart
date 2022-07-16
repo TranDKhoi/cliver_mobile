@@ -4,9 +4,9 @@ import 'package:cliver_mobile/app/features/authentication/signup/screens/input_p
 import 'package:cliver_mobile/app/features/authentication/signup/screens/success_screen.dart';
 import 'package:cliver_mobile/app/features/authentication/signup/screens/verify_phone_screen.dart';
 import 'package:cliver_mobile/app/features/bottom_navigation_bar/my_bottom_bar.dart';
+import 'package:cliver_mobile/app/features/buyer/home_screen/home_screen.dart';
 import 'package:cliver_mobile/app/routes/routes.dart';
 import 'package:get/get.dart';
-
 import '../features/authentication/login/login_screen.dart';
 import '../features/authentication/signup/screens/signup_screen.dart';
 
@@ -46,6 +46,11 @@ class AppPages {
     GetPage(
       name: myBottomBarRoute,
       page: () => const MyBottomBar(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: buyerHomeScreenRoute,
+      page: () => const BuyerHomeScreen(),
       transition: Transition.fadeIn,
     ),
   ];

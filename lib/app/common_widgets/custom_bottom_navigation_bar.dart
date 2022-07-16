@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarCustom extends StatelessWidget {
@@ -30,7 +32,6 @@ class BottomNavigationBarCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bgColor = backgroundColor ?? Theme.of(context).bottomAppBarColor;
-
     return Container(
       decoration: BoxDecoration(
         color: bgColor,
@@ -105,7 +106,7 @@ class _ItemWidgetState extends State<_ItemWidget> {
       selected: widget.isSelected,
       child: AnimatedContainer(
         width: widget.isSelected ? 130 : 50,
-        height: double.maxFinite,
+        height: widget.item.height,
         duration: widget.animationDuration,
         curve: widget.curve,
         decoration: BoxDecoration(
@@ -166,6 +167,7 @@ class BottomNavigationBarCustomItem {
     this.textAlign,
     this.inactiveColor,
     this.childColor,
+    this.height = double.maxFinite,
   });
   final Widget icon;
   final String title;
@@ -173,4 +175,5 @@ class BottomNavigationBarCustomItem {
   final Color? inactiveColor;
   final TextAlign? textAlign;
   final Color? childColor;
+  final double height;
 }
