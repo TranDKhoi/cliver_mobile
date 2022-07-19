@@ -40,4 +40,6 @@ const Map<String, String> viLanguagePackage = {
   'Order': 'Đơn hàng',
   'Profile': 'Cá nhân',
   'Go': 'Bạn muốn đi du lịch\nở đâu',
+  'Search your trip' : 'Tìm kiếm chuyến du lịch của bạn',
+  'PopularCategories' : 'Thể loại phổ biến',
 };

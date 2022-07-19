@@ -11,6 +11,7 @@ class AppColors extends GetxController {
   static const backgroundColorHomeScreen = Colors.white;
   static const textColor = Colors.black;
   static const fillColorTextField = Color(0xFFF4F4F5);
+  static const iconFindColor = Color(0xff1BBA85);
   //==========================================================================//
   //LIGHT THEME
   ThemeData lightTheme = ThemeData.light().copyWith(

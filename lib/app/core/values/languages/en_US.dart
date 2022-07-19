@@ -40,4 +40,6 @@ const Map<String, String> enLanguagePackage = {
   'Order': 'Order',
   'Profile': 'Profile',
   'Go': 'Where Do You\nWant Go',
+  'Search your trip' : 'Search your trip',
+  'PopularCategories' : 'Popular Categories',
 };
