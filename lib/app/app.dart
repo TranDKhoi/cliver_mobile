@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: chatScreenRoute,
+      initialRoute: conversationScreenRoute,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       locale: LocalizationService.locale,

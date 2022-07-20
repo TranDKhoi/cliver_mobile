@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/values/app_colors.dart';
 
@@ -13,10 +14,13 @@ class AppBarChat extends StatelessWidget {
         SizedBox(
           width: size.width * 0.03,
         ),
-        Icon(
-          Icons.arrow_back,
-          color: AppColors.primaryColor,
-          size: size.width * 0.08,
+        GestureDetector(
+          onTap: () => Get.back(),
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.primaryColor,
+            size: size.width * 0.08,
+          ),
         ),
         SizedBox(
           width: size.width * 0.03,

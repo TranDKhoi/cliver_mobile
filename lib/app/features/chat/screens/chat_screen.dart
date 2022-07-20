@@ -1,8 +1,12 @@
+import 'package:cliver_mobile/app/core/utils/utils.dart';
 import 'package:cliver_mobile/app/core/values/app_colors.dart';
 import 'package:cliver_mobile/app/features/chat/widgets/app_bar_chat.dart';
 import 'package:cliver_mobile/app/features/chat/widgets/bottom_bar_chat.dart';
 import 'package:cliver_mobile/data/models/message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -15,36 +19,10 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   bool _hideTime = true;
   int _hideTimeIndex = -1;
+  int _copyTextIndex = -1;
   final _messageInput = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  List<Message> messages = [
-    Message(
-      text:
-          "Hi, Aneeta, How’re You. I’m Jackson From College. Hope You’ll Be Fine And Also Your Family Aneeta. Waiting for your Reply !",
-      date: DateTime.now().subtract(const Duration(minutes: 1)),
-      isSentByMe: true,
-    ),
-    Message(
-      text: "Yes we are fine, wow really nice",
-      date: DateTime.now().subtract(const Duration(minutes: 1)),
-      isSentByMe: false,
-    ),
-    Message(
-      text: "Please, Can you give me Notes",
-      date: DateTime.now().subtract(const Duration(minutes: 1)),
-      isSentByMe: true,
-    ),
-    Message(
-      text: "Ok, I give you But Where!",
-      date: DateTime.now().subtract(const Duration(minutes: 1)),
-      isSentByMe: false,
-    ),
-    Message(
-      text: "Thanks, At College",
-      date: DateTime.now().subtract(const Duration(minutes: 1)),
-      isSentByMe: true,
-    ),
-  ].toList();
+  var messages = Get.arguments;
 
   void _showTimeSent(int index) {
     setState(() {
@@ -60,10 +38,16 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  void _showCopyDialog(int index) {
+    setState(() {
+      _copyTextIndex = index;
+    });
+  }
+
   void _scrollToEnd() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
     );
   }
@@ -85,6 +69,16 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) {
+        _scrollToEnd();
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final DateFormat formatter = DateFormat('jm');
@@ -92,7 +86,12 @@ class _ChatScreenState extends State<ChatScreen> {
     return SafeArea(
       child: Scaffold(
         body: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            setState(() {
+              _copyTextIndex = -1;
+            });
+          },
           child: Column(
             children: [
               SizedBox(
@@ -116,37 +115,178 @@ class _ChatScreenState extends State<ChatScreen> {
                                 ? MainAxisAlignment.end
                                 : MainAxisAlignment.start,
                             children: [
-                              InkWell(
-                                onTap: (() => _showTimeSent(index)),
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                      maxWidth: size.width * 0.7),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: (messages[index].isSentByMe)
-                                        ? AppColors.lightGreenColor
-                                        : Colors.white,
-                                    boxShadow: (!messages[index].isSentByMe)
-                                        ? const [
-                                            BoxShadow(
-                                              blurRadius: 50,
-                                              color: AppColors.greyShadowColor,
-                                              offset: Offset(20, 20),
-                                            ),
-                                          ]
-                                        : null,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Text(
-                                      messages[index].text,
-                                      style: TextStyle(
-                                        fontSize: size.height * 0.02,
-                                        color: AppColors.primaryColor,
+                              Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  InkWell(
+                                    onTap: (() => _showTimeSent(index)),
+                                    onLongPress: () => _showCopyDialog(index),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                          maxWidth: size.width * 0.7),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: (messages[index].isSentByMe)
+                                            ? AppColors.lightGreenColor
+                                            : Colors.white,
+                                        boxShadow: (!messages[index].isSentByMe)
+                                            ? const [
+                                                BoxShadow(
+                                                  blurRadius: 50,
+                                                  color:
+                                                      AppColors.greyShadowColor,
+                                                  offset: Offset(20, 20),
+                                                ),
+                                              ]
+                                            : null,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Text(
+                                          messages[index].text,
+                                          style: TextStyle(
+                                            fontSize: size.height * 0.02,
+                                            color: AppColors.primaryColor,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                  if (_copyTextIndex == index)
+                                    if (messages[index].isSentByMe)
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                      ClipboardData(
+                                                          text: messages[index]
+                                                              .text));
+                                                  showSnackBar(
+                                                      context, 'Text copied');
+                                                  setState(() =>
+                                                      _copyTextIndex = -1);
+                                                },
+                                                child: Container(
+                                                  width: size.width * 0.3,
+                                                  height: size.height * 0.045,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.copy,
+                                                        color: AppColors
+                                                            .primaryColor,
+                                                        size:
+                                                            size.height * 0.03,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        'Copy',
+                                                        style: TextStyle(
+                                                          fontSize:
+                                                              size.height *
+                                                                  0.02,
+                                                          color: AppColors
+                                                              .blackColor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: size.width * 0.3,
+                                                height: size.height * 0.045,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: size.width * 0.3,
+                                            height: size.height * 0.045,
+                                          ),
+                                        ],
+                                      )
+                                    else
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: size.width * 0.3,
+                                                height: size.height * 0.045,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                      ClipboardData(
+                                                          text: messages[index]
+                                                              .text));
+                                                  showSnackBar(
+                                                      context, 'Text copied');
+                                                  setState(() =>
+                                                      _copyTextIndex = -1);
+                                                },
+                                                child: Container(
+                                                  width: size.width * 0.3,
+                                                  height: size.height * 0.045,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.copy,
+                                                        color: Colors.white,
+                                                        size:
+                                                            size.height * 0.03,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        'Copy',
+                                                        style: TextStyle(
+                                                          fontSize:
+                                                              size.height *
+                                                                  0.02,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: size.width * 0.3,
+                                            height: size.height * 0.045,
+                                          ),
+                                        ],
+                                      )
+                                ],
                               ),
                             ],
                           ),
